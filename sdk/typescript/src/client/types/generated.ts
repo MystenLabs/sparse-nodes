@@ -61,6 +61,7 @@ export interface Checkpoint {
 }
 export type CheckpointCommitment = {
 	ECMHLiveObjectSetDigest: ECMHLiveObjectSetDigest;
+	CounterMerkleRoot: CounterMerkleRoot; //giulia added
 };
 export type CheckpointId = string | string;
 /** A claim consists of value and index_mod_4. */
@@ -178,6 +179,11 @@ export type DynamicFieldType = 'DynamicField' | 'DynamicObject';
 export interface ECMHLiveObjectSetDigest {
 	digest: number[];
 }
+//giulia added 
+export interface CounterMerkleRoot {
+	digest: number[];
+}
+//G//
 export interface EndOfEpochData {
 	/** Commitments to epoch specific state (e.g. live object set) */
 	epochCommitments: CheckpointCommitment[];

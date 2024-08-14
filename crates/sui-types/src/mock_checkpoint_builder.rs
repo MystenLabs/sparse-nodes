@@ -7,9 +7,7 @@ use crate::crypto::{AuthoritySignInfo, AuthoritySignature, SuiAuthoritySignature
 use crate::effects::{TransactionEffects, TransactionEffectsAPI};
 use crate::gas::GasCostSummary;
 use crate::messages_checkpoint::{
-    CertifiedCheckpointSummary, CheckpointContents, CheckpointSummary,
-    CheckpointVersionSpecificData, EndOfEpochData, FullCheckpointContents, VerifiedCheckpoint,
-    VerifiedCheckpointContents, ECMHLiveObjectSetDigest
+    CertifiedCheckpointSummary, CheckpointContents, CheckpointSummary, CheckpointVersionSpecificData, CounterMerkleRoot, ECMHLiveObjectSetDigest, EndOfEpochData, FullCheckpointContents, VerifiedCheckpoint, VerifiedCheckpointContents
 };
 use crate::transaction::VerifiedTransaction;
 use fastcrypto::traits::Signer;
@@ -152,7 +150,7 @@ impl MockCheckpointBuilder {
             timestamp_ms,
             version_specific_data: bcs::to_bytes(&CheckpointVersionSpecificData::empty_for_tests())
                 .unwrap(),
-            checkpoint_commitments: vec![ECMHLiveObjectSetDigest::default().into()], //Default::default(),
+            checkpoint_commitments: vec![CounterMerkleRoot::default().into()], //Default::default(),
         };
 
         let checkpoint = Self::create_certified_checkpoint(validator_keys, summary);
