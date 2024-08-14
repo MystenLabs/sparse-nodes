@@ -33,6 +33,8 @@ use sui_types::transaction::{
 };
 use tokio::sync::broadcast;
 
+use tracing::info;
+
 #[derive(Clone)]
 pub struct SingleValidator {
     validator_service: Arc<ValidatorService>,
@@ -259,7 +261,9 @@ impl SingleValidator {
                 effects,
             );
             if builder.size() == checkpoint_size {
+                info!("Giulia printline 2"); //ok
                 let (checkpoint, _, full_contents) = builder.build(self, 0);
+                info!("Giulia printline {:?} ", checkpoint); // ok
                 checkpoints.push((checkpoint, full_contents));
             }
         }

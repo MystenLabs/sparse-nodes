@@ -120,10 +120,21 @@ impl Default for ECMHLiveObjectSetDigest {
     }
 }
 
+//G//
+//#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, JsonSchema)]
+//pub struct CounterMerkleRoot {
+//    #[schemars(with = "[u8; 32]")]
+//    pub digest: Digest,
+//}
+//G//
+
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, JsonSchema)]
 pub enum CheckpointCommitment {
     ECMHLiveObjectSetDigest(ECMHLiveObjectSetDigest),
     // Other commitment types (e.g. merkle roots) go here.
+    //G//
+    //CounterMerkleRoot(CounterMerkleRoot),
+    //G//
 }
 
 impl From<ECMHLiveObjectSetDigest> for CheckpointCommitment {
@@ -131,6 +142,12 @@ impl From<ECMHLiveObjectSetDigest> for CheckpointCommitment {
         Self::ECMHLiveObjectSetDigest(d)
     }
 }
+
+//impl From<CounterMerkleRoot> for CheckpointCommitment {
+//    fn from(d: CounterMerkleRoot) -> Self {
+//        Self::CounterMerkleRoot(d)
+//    }
+//}
 
 #[serde_as]
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, JsonSchema)]

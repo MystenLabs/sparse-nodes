@@ -15,6 +15,8 @@ use crate::transaction::VerifiedTransaction;
 use fastcrypto::traits::Signer;
 use std::mem;
 
+use tracing::info;
+
 pub trait ValidatorKeypairProvider {
     fn get_validator_key(&self, name: &AuthorityName) -> &dyn Signer<AuthoritySignature>;
     fn get_committee(&self) -> &Committee;
@@ -45,6 +47,7 @@ impl MockCheckpointBuilder {
     }
 
     pub fn size(&self) -> usize {
+        info!("Giulia printline 3"); // not ok
         self.transactions.len()
     }
 
@@ -57,6 +60,7 @@ impl MockCheckpointBuilder {
         transaction: VerifiedTransaction,
         effects: TransactionEffects,
     ) {
+        info!("Giulia printline push_transaction"); 
         self.epoch_rolling_gas_cost_summary += effects.gas_cost_summary();
 
         self.transactions
@@ -73,6 +77,7 @@ impl MockCheckpointBuilder {
         CheckpointContents,
         VerifiedCheckpointContents,
     ) {
+        info!("Giulia printline build"); //not ok
         self.build_internal(validator_keys, timestamp_ms, None)
     }
 
@@ -104,6 +109,7 @@ impl MockCheckpointBuilder {
         CheckpointContents,
         VerifiedCheckpointContents,
     ) {
+        info!("Giulia printline 2.3");
         let contents =
             CheckpointContents::new_with_causally_ordered_execution_data(self.transactions.iter());
         let full_contents = VerifiedCheckpointContents::new_unchecked(
@@ -150,11 +156,12 @@ impl MockCheckpointBuilder {
             timestamp_ms,
             version_specific_data: bcs::to_bytes(&CheckpointVersionSpecificData::empty_for_tests())
                 .unwrap(),
-            checkpoint_commitments: Default::default(),
+            checkpoint_commitments: vec![], //Default::default(),
         };
 
         let checkpoint = Self::create_certified_checkpoint(validator_keys, summary);
         self.previous_checkpoint = checkpoint.clone();
+        
         (checkpoint, contents, full_contents)
     }
 
