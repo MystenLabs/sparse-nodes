@@ -121,10 +121,16 @@ impl Default for ECMHLiveObjectSetDigest {
 }
 
 //G//
-//#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, JsonSchema)]
-//pub struct CounterMerkleRoot {
-//    #[schemars(with = "[u8; 32]")]
-//    pub digest: Digest,
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, JsonSchema)]
+pub struct CounterMerkleRoot {
+    #[schemars(with = "[u8; 32]")]
+    pub digest: Digest,
+}
+
+//impl Default for CounterMerkleRoot {
+//    fn default() -> Self {
+//        Accumulator::default().digest().into()
+//    }
 //}
 //G//
 
@@ -137,12 +143,25 @@ pub enum CheckpointCommitment {
     //G//
 }
 
+//impl CheckpointCommitment {
+//    pub fn new_two_elements(
+//        digest: ECMHLiveObjectSetDigest,
+//        root: CounterMerkleRoot,
+//    ) -> Self {
+//        vec![
+//            CheckpointCommitment::ECMHLiveObjectSetDigest(digest),
+//            CheckpointCommitment::CounterMerkleRoot(root),
+//        ]
+//    }
+//}
+
 impl From<ECMHLiveObjectSetDigest> for CheckpointCommitment {
     fn from(d: ECMHLiveObjectSetDigest) -> Self {
         Self::ECMHLiveObjectSetDigest(d)
     }
 }
 
+// If I used the lines below, CheckpointCommitment can hold either a ECMHLiveObjectSetDigest or a CounterMerkleRoot
 //impl From<CounterMerkleRoot> for CheckpointCommitment {
 //    fn from(d: CounterMerkleRoot) -> Self {
 //        Self::CounterMerkleRoot(d)

@@ -261,9 +261,8 @@ impl SingleValidator {
                 effects,
             );
             if builder.size() == checkpoint_size {
-                info!("Giulia printline 2"); //ok
                 let (checkpoint, _, full_contents) = builder.build(self, 0);
-                info!("Giulia printline {:?} ", checkpoint); // ok
+                info!("Giulia printline checkpoint {:?} ", checkpoint); // ok
                 checkpoints.push((checkpoint, full_contents));
             }
         }
