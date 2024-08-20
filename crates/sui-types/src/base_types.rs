@@ -810,6 +810,12 @@ impl ExecutionDigests {
             effects: TransactionEffectsDigest::random(),
         }
     }
+
+    //G//
+    //pub fn as_ref(&self) -> &[u8] {
+    //    &self.effects, //: TransactionEffectsDigest;
+    //}
+    //G//
 }
 
 #[derive(Clone, Eq, PartialEq, Serialize, Deserialize, Debug)]

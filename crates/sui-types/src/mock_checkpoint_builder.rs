@@ -115,6 +115,10 @@ impl MockCheckpointBuilder {
             ),
         );
 
+        //G//
+        //let merkle_tree = MerkleTree::build(contents.iter());
+        //G//
+
         let (epoch, epoch_rolling_gas_cost_summary, end_of_epoch_data) =
             if let Some((next_epoch, end_of_epoch_data)) = new_epoch_data {
                 let epoch = std::mem::replace(&mut self.epoch, next_epoch);
