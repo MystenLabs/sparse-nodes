@@ -145,25 +145,16 @@ pub enum CheckpointCommitment {
     //G//
 }
 
-//impl Default for CheckpointCommitment {
-//    fn default() -> Self {
-//        CheckpointCommitment::ECMHLiveObjectSetDigest(digest),
-//        CheckpointCommitment::CounterMerkleRoot(root),
-//    }
-//}
-
 impl From<ECMHLiveObjectSetDigest> for CheckpointCommitment {
     fn from(d: ECMHLiveObjectSetDigest) -> Self {
         Self::ECMHLiveObjectSetDigest(d)
     }
 }
 
-// If I used the lines below, CheckpointCommitment can hold either a ECMHLiveObjectSetDigest or a CounterMerkleRoot
 impl From<CounterMerkleRoot> for CheckpointCommitment {
     fn from(d: CounterMerkleRoot) -> Self {
         Self::CounterMerkleRoot(d)
     }
-
 }
 
 #[serde_as]

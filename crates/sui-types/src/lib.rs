@@ -60,6 +60,7 @@ pub mod in_memory_storage;
 pub mod inner_temporary_store;
 pub mod message_envelope;
 pub mod messages_checkpoint;
+pub mod merkle;
 pub mod messages_consensus;
 pub mod messages_grpc;
 pub mod messages_safe_client;

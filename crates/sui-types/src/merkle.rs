@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 //! Merkle tree implementation for Walrus.
-use alloc::{format, vec::Vec};
+use std::{format, vec::Vec};
 use core::{fmt::Debug, marker::PhantomData};
 use std;
 
@@ -64,7 +64,7 @@ impl AsRef<[u8]> for Node {
 }
 
 /// The operations required to authenticate a Merkle proof.
-pub trait MerkleAuth: Clone + alloc::fmt::Debug {
+pub trait MerkleAuth: Clone + std::fmt::Debug {
     /// Verifies the proof given a Merkle root and the leaf data.
     #[tracing::instrument(skip(leaf))]
     fn verify_proof(&self, root: &Node, leaf: &[u8], leaf_index: usize) -> bool {
