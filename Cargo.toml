@@ -147,7 +147,7 @@ members = [
     "crates/sui-single-node-benchmark",
     "crates/sui-snapshot",
     "crates/sui-source-validation",
-    "crates/sui-source-validation-service",
+    "crates/sui-source-validation-service", "crates/sui-sparse-client",
     "crates/sui-storage",
     "crates/sui-surfer",
     "crates/sui-swarm",

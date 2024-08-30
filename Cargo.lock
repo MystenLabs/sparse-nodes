@@ -14690,6 +14690,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "sui-sparse-client"
+version = "1.32.0"
+dependencies = [
+ "sha2 0.10.8",
+]
+
+[[package]]
 name = "sui-storage"
 version = "0.1.0"
 dependencies = [
